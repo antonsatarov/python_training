@@ -1,3 +1,4 @@
+from selenium.webdriver.support.ui import Select  # used for selecting birthday and anniversary
 
 
 class ContactHelper:

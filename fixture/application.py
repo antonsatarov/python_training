@@ -2,7 +2,6 @@ from selenium.webdriver.firefox.webdriver import WebDriver
 from fixture.session import SessionHelper
 from fixture.group import GroupHelper
 from fixture.contact import ContactHelper
-from selenium.webdriver.support.ui import Select  # used for selecting birthday and anniversary
 
 
 class Application:
