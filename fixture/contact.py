@@ -71,7 +71,6 @@ class ContactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
-        wd.find_element_by_link_text("groups").click()
         self.open_home_page()
         self.select_first_contact()
         # click delete
