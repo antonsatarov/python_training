@@ -1,4 +1,5 @@
 from selenium.webdriver.support.ui import Select  # used for selecting birthday and anniversary
+from model.contact import Contact
 
 
 class ContactHelper:
@@ -77,6 +78,7 @@ class ContactHelper:
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         # delete confirmation
         wd.switch_to.alert.accept()
+        wd.find_element_by_css_selector("div.msgbox")
 
     def select_first_contact(self):
         wd = self.app.wd
@@ -98,3 +100,15 @@ class ContactHelper:
     def count(self):
         wd = self.app.wd
         return len(wd.find_elements_by_name("selected[]"))
+
+    def get_contact_list(self):
+        wd = self.app.wd
+        self.open_home_page()
+        contacts = []
+        for element in wd.find_elements_by_name("entry"):
+            cells = element.find_elements_by_tag_name("td")
+            id = cells[0].find_element_by_name("selected[]").get_attribute("value")
+            lastname = cells[1]
+            firstname = cells[2]
+            contacts.append(Contact(id=id, firstname=firstname, lastname=lastname))
+        return contacts
