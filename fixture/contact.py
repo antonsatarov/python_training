@@ -79,6 +79,7 @@ class ContactHelper:
         # delete confirmation
         wd.switch_to.alert.accept()
         wd.find_element_by_css_selector("div.msgbox")
+        self.open_home_page()
 
     def select_first_contact(self):
         wd = self.app.wd
@@ -108,7 +109,7 @@ class ContactHelper:
         for element in wd.find_elements_by_name("entry"):
             cells = element.find_elements_by_tag_name("td")
             id = cells[0].find_element_by_name("selected[]").get_attribute("value")
-            lastname = cells[1]
-            firstname = cells[2]
+            lastname = cells[1].text
+            firstname = cells[2].text
             contacts.append(Contact(id=id, firstname=firstname, lastname=lastname))
         return contacts
