@@ -22,9 +22,8 @@ class ContactHelper:
     def modify_contact_by_index(self, index, new_contact_data):
         wd = self.app.wd
         self.open_home_page()
-        self.select_contact_by_index(index)
-        # click edit
-        wd.find_element_by_xpath("//tr[2]/td[8]/a/img").click()
+        # click random edit button
+        wd.find_elements_by_css_selector('img[alt="Edit"]')[index].click()
         # fill contact form with new data
         self.fill_contact_form(new_contact_data)
         # click update
