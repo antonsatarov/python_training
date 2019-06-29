@@ -8,7 +8,7 @@ def test_comparison_contact_fields(app):
         app.contact.create(Contact(firstname="firstname", lastname="lastname", address="address", email1="email1",
                                    email2="email2", email3="email3", homephone="+555", mobile="(1)111", workphone="2-22",
                                    phone2="44444"))
-    index = randrange(app.contact.count())
+    index = randrange(len(app.contact.get_contact_list()))
     contact_from_home_page = app.contact.get_contact_list()[index]
     contact_from_edit_page = app.contact.get_contact_info_from_edit_page(index)
     assert contact_from_home_page.firstname == contact_from_edit_page.firstname
