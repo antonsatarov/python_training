@@ -60,7 +60,6 @@ class ContactHelper:
         return Contact(firstname=firstname, lastname=lastname, id=id, homephone=homephone, mobile=mobile,
                        workphone=workphone, phone2=phone2)
 
-
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
         self.open_contact_view_by_index(index)
@@ -71,7 +70,6 @@ class ContactHelper:
         phone2 = re.search("P: (.*)", text).group(1)
         return Contact(homephone=homephone, mobile=mobile,
                        workphone=workphone, phone2=phone2)
-
 
     def fill_contact_form(self, contact):
         wd = self.app.wd
@@ -167,8 +165,7 @@ class ContactHelper:
                 id = cells[0].find_element_by_name("selected[]").get_attribute("value")
                 lastname = cells[1].text
                 firstname = cells[2].text
-                all_phones = cells[5].text.splitlines()
+                all_phones = cells[5].text
                 self.contact_cache.append(Contact(id=id, firstname=firstname, lastname=lastname,
-                                                  homephone=all_phones[0], mobile=all_phones[1],
-                                                  workphone=all_phones[2], phone2=all_phones[3]))
+                                                  all_phones_from_home_page=all_phones))
         return list(self.contact_cache)
