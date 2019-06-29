@@ -26,7 +26,7 @@ def test_add_contact(app):
                                amonth="May",
                                ayear="2000",
                                secaddress="asd",
-                               sechome="asda",
+                               phone2="asda",
                                notes="asda")
     app.contact.create(contact)
     assert len(old_contact_list) + 1 == app.contact.count()
